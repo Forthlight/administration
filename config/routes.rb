@@ -4,6 +4,8 @@ Administration::Engine.routes.draw do
     module: :devise,
     :controllers => { :sessions => "administration/sessions" }
   }
+  
+  resources :article_types
 
   get "landing/index"
   root "landing#index"
