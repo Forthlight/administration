@@ -1,0 +1,13 @@
+<h1>Members#index</h1>
+<p>Find me in app/views/administration/members/index.html.erb</p>
+<table>
+  <% @members.each do |member| %>
+    <tr>
+      <td><%= member.username %></td>
+      <td><%= member.first_name + " " + member.last_name %></td>
+      <td><%= member.email %></td>
+      <td><%= member.role %></td>
+      <td><%= link_to "Edit", administration.edit_member_path(member.id) %></td>
+    </tr>
+  <% end %>
+</table>
