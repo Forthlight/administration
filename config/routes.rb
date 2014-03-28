@@ -5,7 +5,7 @@ Administration::Engine.routes.draw do
     :controllers => { :sessions => "administration/sessions" }
   }
   
-  resources :article_types
+  resources :article_types, :article_categories
 
   get "landing/index"
   root "landing#index"
