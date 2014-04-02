@@ -7,15 +7,15 @@ module Administration
     end
 
     def show
-
+      @member = Member::User.find(params[:id])
     end
 
     def new
-      @user = Article::Type.new
+      @user = Member::User.new
     end
 
     def create
-      @user = Article::Type.new(user_params)
+      @user = Member::User.new(user_params)
 
       if @user.save
         redirect_to administration.members_path, :notice => "A new type was created!"
@@ -25,7 +25,7 @@ module Administration
     end
 
     def edit
-      @user = Article::Type.new(user_params)
+      @user = Member::User.new(user_params)
     end
 
     def update
@@ -33,12 +33,18 @@ module Administration
     end
 
     def destroy
-
+      @member = Member::User.find(params[:id])
+    
+      unless @member.destroy
+        redirect_to(administration.members_path, notice: "An error occured, the deletion was not successful")
+      else
+        redirect_to(administration.members_path, notice: "A member's account was deleted")
+      end
     end
 
     private
     def user_params
-      params.require(:type).permit(:title)
+      params.require(:user).permit(:first_name, :last_name, :username, :email, :role)
     end
   end
 end
