@@ -1,10 +1,4 @@
-Administration::Engine.routes.draw do
-  devise_for :admins, {
-    class_name: "Administration::Admin", 
-    module: :devise,
-    :controllers => { :sessions => "administration/sessions" }
-  }
-  
+Administration::Engine.routes.draw do  
   resources :article_types, :article_categories, :members
 
   get "landing/index"
