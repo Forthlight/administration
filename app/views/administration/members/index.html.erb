@@ -18,7 +18,6 @@
       <td><%= user.role.capitalize %></td>
       <td>
         <%= button_to "Delete account", administration.member_path(user.id), data: { confirm: "Are you sure?" }, method: :delete %>
-        <%#= link_to "Edit", administration.edit_member_path(user.id) %>
       </td>
     </tr>
   <% end %>
