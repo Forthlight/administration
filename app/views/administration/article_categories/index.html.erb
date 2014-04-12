@@ -1,6 +1,6 @@
 <h1>ArticleCategories#index</h1>
 <p>Find me in app/views/administration/article_categories/index.html.erb</p>
-<%= link_to "Sign out", administration.destroy_admin_session_path, method: :delete %>
+<%= link_to "Sign out", auth.destroy_admin_session_path, method: :delete %>
 <table>
   <% @categories.each do |category| %>
     <tr>
