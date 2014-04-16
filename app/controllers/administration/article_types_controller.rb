@@ -2,6 +2,9 @@ require_dependency "administration/application_controller"
 
 module Administration
   class ArticleTypesController < ApplicationController
+    # Require this in order to avoid uninitialized constant
+    require "#{Article::Engine.root}/app/models/article/publication.rb"
+
     def index
       @types = Article::Type.all
     end
