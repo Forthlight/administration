@@ -1,11 +1,12 @@
 module Administration
-  class Blog_comment
+  class BlogComment
     include Mongoid::Document
     include Mongoid::Timestamps
 
-   	belongs_to :blog, :class_name => "Administration::Blog"
+   	embedded_in :blog, inverse_of: :blog_comments, class_name: "Administration::Blog"
 
-    field :author, type: String
+    field :author, type: Integer
     field :content, type: String
+    field :admin, type: Boolean
   end
 end
