@@ -24,16 +24,12 @@ module Administration
       end
     end
 
-      def destroy
-    @publication = Article::Publication.find(params[:id])
-    @publication.destroy
+    def destroy
+      @publication = Article::Publication.find(params[:id])
+      @publication.destroy
 
-
-    respond_to do |format|
-      format.html { redirect_to publications_url }
+      redirect_to administration.publications_path, notice: 'Successfully deleted an article'
     end
-      end
-
 
     private
 
