@@ -1,0 +1,43 @@
+<div class="row-fluid">
+  <div class="span9">
+    <div class="admin-head">
+     <h1><%= @blog.title %></h1>
+   </div>
+   <div class="blog-showcase">
+     <%= simple_format @blog.content %>
+   </div>
+ </div>
+ <div class="span3">
+  <div class="admin-head">
+    <h3>Post by <%= @blog.author %></h3>
+    <i>Posted <%= @blog.created_at.strftime("%d %b. %Y") %></i>
+  </div>
+  <div class="admin-info hidden-phone">
+    <ul>
+      <% if admin_signed_in? %>
+        <li><%= link_to 'Edit This post', edit_blog_path(@blog) %></li>
+        <li><%= link_to 'Delete This post', @blog, confirm: 'Are you sure?', :method => :delete %></li>
+
+        <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
+      <% else %>
+        something useful
+      <% end %>
+    </ul>
+  </div>
+</div>
+</div>
+
+
+
+<%#= form_for [@blog, Administration::Blog_comment.new], :url=>administration.blog_comments_create_path do |f| %>
+<%#= f.label :comment %><br/>
+<%#= f.text_area :content %>
+
+<%#= f.label :author %><br/>
+<%#= f.text_area :author %>
+
+<%#= show_simple_captcha(:object => 'message', :label => " ", :placeholder =>"Retype the Captcha") %>
+<%#= f.submit "Add comment" %>
+<%# end %>
+
+

@@ -1,12 +1,37 @@
-<h1>Administration::Publications#index</h1>
-<table>
-  <% @publications.each do |article| %>
-    <tr>
-      <td><%= link_to article.title, administration.publication_path(article.id) %></td>
-      <td><%= link_to "Edit", administration.edit_publication_path(article.id) %></td>
-      <td>
-        <%= button_to "Delete", administration.publication_path(article.id), data: { confirm: "Are you sure?" }, method: :delete %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<div class="row-fluid">
+	<%= render :file => "#{Administration::Engine.root}/app/views/shared/_adminaside.html.erb" %>
+
+	<div class="span9">
+		<div class="row-fluid"> 
+			<table class="responsive-table">
+				<thead class="table-head">
+					<tr>
+						<th scope="col">Title</th>
+            <th scope="col">Published</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+         <% @publications.each do |article| %>
+         <tr>
+          <td data-title="Title"><%= link_to article.title, administration.publication_path(article.id) %>
+          </td>
+          <td data-title="Published">
+            <%= article.created_at.strftime("%d %b. %Y") %>
+          </td>
+          <td data-title="Rating">
+            <%#= article.rating %>
+          </td>
+          <td>
+           <%= link_to "Edit", administration.edit_publication_path(article.id), :class=>"mock-btn" %></td>
+           <td><%= link_to "Delete", administration.publication_path(article.id), data: { confirm: "Are you sure?" }, method: :delete, :class=>"mock-btn" %>
+           </td>
+         </tr>
+         <% end %>
+       </tbody>
+     </table>
+   </div>
+ </div>
+</div>

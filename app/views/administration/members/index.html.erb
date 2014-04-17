@@ -1,24 +1,43 @@
-<h1>Members#index</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Username</th>    
-      <th>Role</th>
-      <th></th>
-    </tr>
-  </thead>
-  
-  <% @members.each do |user| %>
-    <tr>
-      <td><%= link_to user.first_name + " " + user.last_name, administration.member_path(user.id) %></td>      
-      <td><%= user.email %></td>
-      <td><%= user.username %></td>
-      <td><%= user.role.capitalize %></td>
-      <td>
-        <%= button_to "Delete account", administration.member_path(user.id), data: { confirm: "Are you sure?" }, method: :delete %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<div class="row-fluid">
+<%= render :file => "#{Administration::Engine.root}/app/views/shared/_adminaside.html.erb" %>
+
+<div class="span9">
+  <div class="row-fluid"> 
+      <table class="responsive-table">
+        <thead class="table-head">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Username</th>    
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @members.each do |user| %>
+          <tr>
+            <td scope="row" data-title="Name"><%= link_to user.first_name + " " + user.last_name, administration.member_path(user.id) %></td>      
+            <td data-title="Email"><%= user.email %></td>
+            <td data-title="Username"><%= user.username %></td>
+            <td data-title="Role">
+              <% if user.role == :research %> 
+         <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
+
+        <% elsif user.role == :business %>
+         <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
+         
+        <% else %>
+         <%= image_tag("user.png", size: "32x32", alt: "User") %>
+
+        <% end %>
+            </td>
+            <td>
+              <%= button_to "Delete", administration.member_path(user.id), data: { confirm: "Permanently remove this member?" }, method: :destroy, :class=>"mock-btn" %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>
+</div>

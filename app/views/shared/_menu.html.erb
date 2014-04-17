@@ -1,3 +1,5 @@
-<li><%= link_to "Home", administration.root_path %></li>
+<li><%= link_to "Admin Panel", administration.root_path %></li>
 <li><%= link_to "Articles", administration.publications_path %></li>
 <li><%= link_to "Members", administration.members_path %></li>
+<li><%= link_to "Blogs", administration.blogs_path %></li>
+<li><%= link_to "Sign out", auth.destroy_admin_session_path, method: :delete %></li>

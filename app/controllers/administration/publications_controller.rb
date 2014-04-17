@@ -24,17 +24,16 @@ module Administration
       end
     end
 
-    def destroy
       def destroy
-        @publication = Article::Publication.where(author: current_user.id).find(params[:id])
-      
-        unless @publication.destroy
-          redirect_to(administration.publications_path, notice: "An error occured, the deletion was not successful")
-        else
-          redirect_to(administration.publications_path, notice: "An article was deleted")
-        end
-      end
+    @publication = Article::Publication.find(params[:id])
+    @publication.destroy
+
+
+    respond_to do |format|
+      format.html { redirect_to publications_url }
     end
+      end
+
 
     private
 

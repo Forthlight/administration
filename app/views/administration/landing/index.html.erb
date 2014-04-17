@@ -1,3 +1,52 @@
-<h1>Landing#index</h1>
-<p>Find me in app/views/administration/landing/index.html.erb</p>
-<%= link_to "Sign out", auth.destroy_admin_session_path, method: :delete %>
+<div class="row-fluid">
+  <%= render :file => "#{Administration::Engine.root}/app/views/shared/_adminaside.html.erb" %>
+
+  <div class="span9">
+    <div class="panel-head">
+     <h3>Overview</h3>
+   </div>
+   <div class="overview">
+
+     <div class="row-fluid"> 
+      <h3>Latest articles</h3>
+      <% @publications.each do |article| %>
+      <div class="span3 latest pub">
+        <h1><%= link_to article.title, administration.publication_path(article.id) %></h1>
+        <!-- By <%=  article.author %><br> -->
+
+        Published <%= article.created_at.strftime("%d %b. %Y") %> <br>
+
+        <%#= article.rating %>
+          <%= link_to "Edit", administration.edit_publication_path(article.id), :class=>"mock-btn" %>
+
+          <%= link_to "Delete", administration.publication_path(article.id), data: { confirm: "Are you sure?" }, method: :delete, :class=>"mock-btn" %>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="row-fluid">
+      <h3>Latest members</h3>
+      <% @members.each do |user| %>
+      <div class="span12 latest">
+       <% if user.role == :research %> 
+       <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
+
+       <% elsif user.role == :business %>
+       <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
+
+       <% else %>
+       <%= image_tag("user.png", size: "32x32", alt: "User") %>
+       <% end %>
+
+       <%= link_to user.first_name + " " + user.last_name, administration.member_path(user.id) %>
+       registered with the email <%= user.email %> and username <%= user.username %>.
+       
+       <span>
+         <%= button_to "Delete", administration.member_path(user.id), data: { confirm: "Permanently remove this member?" }, method: :destroy, :class=>"mock-btn" %>
+       </span>
+     </div>
+     <% end %>
+   </div>
+ </div>
+</div>
+</div>
