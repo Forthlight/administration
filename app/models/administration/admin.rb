@@ -4,9 +4,8 @@ module Administration
     # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :rememberable, :trackable, :validatable, :authentication_keys => [:email]
 
-    # Non-devise field validaitons
+    # Non-devise field validations
     validates :first_name, presence: true, length: { maximum: 20 }
     validates :last_name, presence: true, length: { maximum: 20 }
-    #validates :username, presence: true, length: { maximum: 20 }, uniqueness: {case_sensitive: false}, format: { with: /\A[a-zA-Z0-9]+\Z/ }
   end
 end

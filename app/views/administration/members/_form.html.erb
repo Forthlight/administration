@@ -1,6 +1,4 @@
-<h2>Edit</h2>
-
-<%= form_for(@user, url: administration.member_path, html: { method: :patch }) do |f| %>
+<%= form_for(@user, url: @path, html: { method: @method }) do |f| %>
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
@@ -31,7 +29,7 @@
   </div>
   
   <div>
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
@@ -41,17 +39,10 @@
   </div>
 
   <div>
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div>
     <%= f.submit "Update" %>
   </div>
 <% end %>
 
 <h3>Delete account</h3>
 
-<%= button_to "Delete", member.registration_path, data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<%= button_to "Delete", administration.member_path, data: { confirm: "Are you sure?" }, method: :delete %></p>

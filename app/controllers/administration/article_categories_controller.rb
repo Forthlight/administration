@@ -44,7 +44,7 @@ module Administration
     private
 
     def category_params
-      params.require(:category).permit(:title)
+      params.require(:category).permit(:title, :description)
     end
 
     # these variables are required whenever the new view is rendered

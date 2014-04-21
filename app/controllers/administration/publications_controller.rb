@@ -17,7 +17,7 @@ module Administration
     def update
       @publication = Article::Publication.find(params[:id])
 
-      if @publication.update_attributes(publication_params)
+      if @publication.update_attributes!(publication_params)
         redirect_to administration.publications_path, notice: 'Successfully updated'
       else
         render action: :edit, :notice => "An error occured, the article was not updated"
@@ -34,7 +34,7 @@ module Administration
     private
 
     def publication_params
-      params.require(:publication).permit(:title, :content, :published, :type_id, :category_id)
+      params.require(:publication).permit(:title, :content, :published, :type_id, :category_id, :cluster_category_id)
     end
   end
 end

@@ -34,12 +34,10 @@ module Administration
     def update 
       @blog = Administration::Blog.find(params[:id])
 
-      respond_to do |format|
-        if @blog.update_attributes(blog_params)
-          redirect_to @blog, notice: 'Post was successfully updated.'
-        else
-          render action: :edit, notice: "Update failed, please try again"
-        end
+      if @blog.update_attributes(blog_params)
+        redirect_to @blog, notice: 'Post was successfully updated.'
+      else
+        render action: :edit, notice: "Update failed, please try again"
       end
     end
 

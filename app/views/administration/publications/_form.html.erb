@@ -1,48 +1,50 @@
 <%= tinymce_assets %>
 <div class="composer">
-<%= form_for(@publication) do |f| %>
-<%= tinymce %>
+  <%= form_for(@publication) do |f| %>
+    <%= tinymce %>
+    
+    <% if @publication.errors.any? %>
+      <div class="error_messages">
+        <h3>Submission failed</h3>
+        <ul>
+          <% for message in @publication.errors.full_messages %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
+    <div class="row-fluid overhead">
+      <div class="span10">
+        <!-- Ha samma bredd som textarea? -->
+        <%= f.text_field :title, :required => true, :placeholder => "Enter a title here" %>
+      </div>
+    </div>
 
-  <% if @publication.errors.any? %>
-    <div class="error_messages">
-      <h3>Submission failed</h3>
-      <ul>
-        <% for message in @publication.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+    <div>
+      <%= f.text_area :content, :class => "tinymce", size: '100x20' %>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span2">
+          <div><%= f.label :type_id, "Type" %></div>
+          <%= f.select(:type_id, Article::Type.all.collect{|t| [t.title, t.id]}, {:prompt => 'Choose type'}) %>
+      </div>
+      <div class="span3">
+          <div><%= f.label :cluster_category_id, "Cluster category" %></div>
+          <%= f.select(:cluster_category_id, Article::ClusterCategory.all.collect{|cc| [cc.title, cc.id]}, {:prompt => 'Choose cluster category'}) %>
+      </div>
+      <div class="span3">
+          <div><%= f.label :category_id, "Category" %></div>
+          <%= f.select(:category_id, Article::Category.all.collect{|c| [c.title, c.id]}, {:prompt => 'Choose category'}) %>
+      </div>
+      <div class="span2">
+          <%= f.label :published %>
+          <%= f.check_box :published %>
+      </div>
+      <div class="span2">
+          <%= f.submit "Save", :class=>"mock-btn" %>
+      </div>
     </div>
   <% end %>
-
-<div class="row-fluid overhead">
-  <div class="span3">
-        <%= f.label :title%>
-    <%= f.text_field :title, :required => true %>
-  </div>
-
-  <div class="span3">
-        <%= f.label :type%>
-    <%= f.select(:type_id, Article::Type.all.collect{|t| [t.title, t.id]}, {:prompt => 'Choose Type'}) %>
-  </div>
-
-  <div class="span3">
-      <%= f.label :category%>
-    <%= f.select(:category_id, Article::Category.all.collect{|c| [c.title, c.id]}, {:prompt => 'Choose Category'}) %>
-  </div>
-  <div class="span3">
-        <%= f.label :published%>
-    <%= f.check_box :published %>
-  </div>
-</div>
-
-  <div>
-    <%= f.text_area :content, :class => "tinymce", size: '100x20' %>
-  </div>
-
-  <div>
-    <%= f.submit "Save", :class=>"mock-btn" %>
-  </div>
-  
-<% end %>
 </div>

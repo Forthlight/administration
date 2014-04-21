@@ -1,9 +1,9 @@
-<%= form_for(@category, url: @path, html: { method: @method }) do |f| %>
-  <% if @category.errors.any? %>
+<%= form_for(@cluster, url: @path, html: { method: @method }) do |f| %>
+  <% if @cluster.errors.any? %>
     <div class="error_messages">
       <h3>Submission failed</h3>
       <ul>
-        <% for message in @category.errors.full_messages %>
+        <% for message in @cluster.errors.full_messages %>
           <li><%= message %></li>
         <% end %>
       </ul>

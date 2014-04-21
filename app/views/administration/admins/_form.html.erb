@@ -1,0 +1,27 @@
+<%= form_for(@admin, url: @path, html: { method: @method }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true %></div>
+
+  <div>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div>
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
+
+<%= button_to "Delete admin", @admin, data: { confirm: "Are you sure?" }, method: :delete %></p>

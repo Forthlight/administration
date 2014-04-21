@@ -1,0 +1,32 @@
+<div class="row-fluid">
+<%= render :file => "#{Administration::Engine.root}/app/views/shared/_adminaside.html.erb" %>
+
+<div class="span9">
+  <div class="row-fluid"> 
+      <table class="responsive-table">
+        <thead class="table-head">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @admins.each do |admin| %>
+          <tr>
+            <td scope="row" data-title="Name"><%= admin.first_name + " " + admin.last_name %></td>      
+            <td data-title="Email"><%= admin.email %></td>
+            <td>
+              <%= link_to "Edit", administration.edit_admin_path(admin.id), :class=>"mock-btn" %>
+            </td>
+            <td>
+              <%= button_to "Delete", administration.admin_path(admin.id), data: { confirm: "Permanently remove this admin?" }, method: :destroy, :class=>"mock-btn" %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>
+</div>

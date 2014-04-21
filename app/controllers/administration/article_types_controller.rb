@@ -54,7 +54,7 @@ module Administration
     private
 
     def type_params
-      params.require(:type).permit(:title)
+      params.require(:type).permit(:title, :description)
     end
 
     # these variables are required whenever the new view is rendered
