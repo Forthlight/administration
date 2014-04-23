@@ -1,4 +1,0 @@
-<%= div_for blog_comments do %>
-	<%= blog_comment.author %>
-	<%=simple_format blog_comment.content %>
-<% end %>

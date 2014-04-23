@@ -5,7 +5,7 @@ module Administration
     skip_before_filter :authenticate_admin!, only: [:index, :show]
 
     def index
-      @blogs =  Administration::Blog.all.reverse
+      @blogs =  Administration::Blog.all.order("created_at ASC").page(params[:page]).per(5)
     end
 
     def show
@@ -13,7 +13,7 @@ module Administration
     end
 
     def edit
-      @blog =  Administration::Blog.find(params[:id])
+      @blog = Administration::Blog.find(params[:id])
     end
 
     def new
@@ -22,6 +22,7 @@ module Administration
 
     def create
       @blog =  Administration::Blog.new(blog_params)
+      @blog.author =  current_admin.id
       
       if @blog.save
         redirect_to administration.blogs_path, :notice => "A new post was created!"
@@ -33,6 +34,7 @@ module Administration
 
     def update 
       @blog = Administration::Blog.find(params[:id])
+      @blog.author =  current_admin.id
 
       if @blog.update_attributes(blog_params)
         redirect_to @blog, notice: 'Post was successfully updated.'
