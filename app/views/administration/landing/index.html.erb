@@ -19,7 +19,7 @@
         <%#= article.rating %>
           <%= link_to "Edit", administration.edit_publication_path(article.id), :class=>"mock-btn" %>
 
-          <%= link_to "Delete", administration.publication_path(article.id), data: { confirm: "Are you sure?" }, method: :delete, :class=>"mock-btn" %>
+          <%= link_to "Delete", administration.publication_path(article.id), data: { confirm: "Are you sure?" }, method: :delete, :class=>"mock-btn del" %>
       </div>
       <% end %>
     </div>
@@ -42,7 +42,7 @@
        registered with the email <%= user.email %> and username <%= user.username %>.
        
        <span>
-         <%= button_to "Delete", administration.member_path(user.id), data: { confirm: "Permanently remove this member?" }, method: :destroy, :class=>"mock-btn" %>
+         <%= button_to "Delete", administration.member_path(user.id), data: { confirm: "Permanently remove this member?" }, method: :destroy, :class=>"mock-btn del" %>
        </span>
      </div>
      <% end %>

@@ -26,7 +26,7 @@
           </td>
           <td>
            <%= link_to "Edit", administration.edit_publication_path(article.id), :class=>"mock-btn" %></td>
-           <td><%= link_to "Delete", administration.publication_path(article.id), data: { confirm: "Are you sure?" }, method: :delete, :class=>"mock-btn" %>
+           <td><%= link_to "Delete", administration.publication_path(article.id), data: { confirm: "Are you sure?" }, method: :delete, :class=>"mock-btn del" %>
            </td>
          </tr>
          <% end %>

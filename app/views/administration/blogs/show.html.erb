@@ -20,7 +20,7 @@
       <h3>New comments</h3>
     </div>
     <%= form_for [@blog, Administration::BlogComment.new] do |f| %>
-    <p><%= f.text_area :content, :rows => 10, :class=>"span12" %></p>
+    <p><%= f.text_area :content, :rows => 10, :class=>"span12 area" %></p>
     <p><%= f.submit "Send", :class=>"mock-btn" %></p>
     <% end %>
     <% end %>

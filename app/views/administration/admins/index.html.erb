@@ -21,7 +21,7 @@
               <%= link_to "Edit", administration.edit_admin_path(admin.id), :class=>"mock-btn" %>
             </td>
             <td>
-              <%= button_to "Delete", administration.admin_path(admin.id), data: { confirm: "Permanently remove this admin?" }, method: :destroy, :class=>"mock-btn" %>
+              <%= button_to "Delete", administration.admin_path(admin.id), data: { confirm: "Permanently remove this admin?" }, method: :destroy, :class=>"mock-btn del" %>
             </td>
           </tr>
           <% end %>

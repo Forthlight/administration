@@ -23,13 +23,13 @@
     <div class="blog-post">
       <h1><%= link_to blog.title, blog %></h1>
       <i>Posted <%= blog.created_at.strftime("%d %b. %Y") %></i>
-      <%=simple_format blog.content.slice(0,430) %>
+      <p><%= truncate_to_paragraph(blog.content) %></p>
       <div class="blog-foot">
         <%= link_to "Read more", blog, :class=>"mock-btn"%>
 
         <% if admin_signed_in? %>
           <%= link_to 'Edit', edit_blog_path(blog), :class=>"mock-btn" %>
-          <%= link_to 'Delete', blog, confirm: 'Are you sure?', method: :delete, :class=>"mock-btn" %>
+          <%= link_to 'Delete', blog, confirm: 'Are you sure?', method: :delete, :class=>"mock-btn del" %>
         <% end %>
       </div>
     </div>
