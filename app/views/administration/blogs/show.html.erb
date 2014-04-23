@@ -2,54 +2,70 @@
   <div class="span9">
     <div class="admin-head">
      <h1><%= @blog.title %></h1>
-   </div>
-   <div class="blog-showcase">
-     <%= simple_format @blog.content %>
-   </div>
- </div>
- <div class="span3">
-    <div class="admin-head">
-      <h3>Post by <%= @blog.author %></h3>
+     <div class="visible-phone">
       <i>Posted <%= @blog.created_at.strftime("%d %b. %Y") %></i>
     </div>
-    <div class="admin-info hidden-phone">
-      <ul>
-        <% if admin_signed_in? %>
-          <li><%= link_to 'Edit This post', edit_blog_path(@blog) %></li>
-          <li><%= link_to 'Delete This post', @blog, confirm: 'Are you sure?', :method => :delete %></li>
+  </div>
+  <div class="blog-showcase">
+   <%= simple_format @blog.content %>
 
-          <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
-        <% else %>
-          something useful
-        <% end %>
-      </ul>
+
+   <% if @blog.blog_comments.size > 0 %>
+
+   <div class="blog-comments">
+
+
+    <% if admin_signed_in? || user_signed_in? %>
+    <div class="admin-head">
+      <h3>New comments</h3>
     </div>
+    <%= form_for [@blog, Administration::BlogComment.new] do |f| %>
+    <p><%= f.text_area :content, :rows => 10, :class=>"span12" %></p>
+    <p><%= f.submit "Send", :class=>"mock-btn" %></p>
+    <% end %>
+    <% end %>
+
+    <div class="admin-head">
+      <h3>Comments</h3>
+    </div>
+    <% @blog.blog_comments.reverse.each do |comment| %>
+
+    <div class="comment-post">
+      <% if comment.admin %>
+      <h3 style="color:#FC6E51;">Administrator</h3>
+      <% else %>
+      <b><%= find_comment_author(comment.author) %></b>
+      <% end %>
+      <i><%= comment.created_at.strftime("%I:%M %d %b, %Y") %></i>
+
+      <p><%= comment.content %></p>
+    </div>
+    <% end %>
+    <% end %>
   </div>
 </div>
+</div>
 
+<div class="span3">
+  <div class="admin-head hidden-phone">
+    <h3>Post by <%= @blog.author %></h3>
+    <i>Posted <%= @blog.created_at.strftime("%d %b. %Y") %></i>
+  </div>
+  <div class="admin-info hidden-phone">
+    <ul>
+      <% if admin_signed_in? %>
+      <li><%= link_to 'Edit This post', edit_blog_path(@blog) %></li>
+      <li><%= link_to 'Delete This post', @blog, confirm: 'Are you sure?', :method => :delete %></li>
 
-<% if @blog.blog_comments.size > 0 %>
-  <h2>Comments</h2>
-  <% @blog.blog_comments.each do |comment| %>
+      <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
+      <% else %>
+      something useful
+      <% end %>
+    </ul>
+  </div>
+</div>
+</div>
 
-    <% if comment.admin %>
-      <h3>Administrator</h3>
-    <% else %>
-      <h3><%= find_comment_author(comment.author) %></h3>
-    <% end %>
-    <p><%= comment.created_at.strftime("%I:%M %d %b, %Y") %></p>
-
-    <p><%= comment.content %></p>
-  <% end %>
-<% end %>
-
-<% if admin_signed_in? || user_signed_in? %>
-  <h2>New Comment</h2>
-  <%= form_for [@blog, Administration::BlogComment.new] do |f| %>
-    <p><%= f.text_area :content, :rows => 10 %></p>
-    <p><%= f.submit "Send" %></p>
-  <% end %>
-<% end %>
 
 
 

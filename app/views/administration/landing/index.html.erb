@@ -11,7 +11,7 @@
       <h3>Latest articles</h3>
       <% @publications.each do |article| %>
       <div class="span3 latest pub">
-        <h1><%= link_to article.title, administration.publication_path(article.id) %></h1>
+        <h1><%= link_to article.title.slice(0,12), administration.publication_path(article.id) %>...</h1>
         <!-- By <%=  article.author %><br> -->
 
         Published <%= article.created_at.strftime("%d %b. %Y") %> <br>
