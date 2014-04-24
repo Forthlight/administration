@@ -5,6 +5,7 @@ module Administration
     devise :database_authenticatable, :rememberable, :trackable, :validatable, :authentication_keys => [:email]
 
     # Non-devise field validations
+
     validates :first_name, presence: true, length: { maximum: 20 }
     validates :last_name, presence: true, length: { maximum: 20 }
   end
