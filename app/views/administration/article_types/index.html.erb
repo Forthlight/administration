@@ -4,7 +4,7 @@
 <table>
   <% @types.each do |type| %>
     <tr>
-      <td><%= type.title %></td>
+      <td><%= restore_whitespace(type.title) %></td>
       <td><%= link_to "Edit", administration.edit_article_type_path(type.id) %></td>
     </tr>
   <% end %>

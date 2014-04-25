@@ -33,7 +33,7 @@ module Administration
     def update
       @cluster = Article::ClusterCategory.find(params[:id])
 
-      if @cluster.update_attributes(cluster_category_params)
+      if @cluster.update_attributes!(cluster_category_params)
         redirect_to administration.article_cluster_categories_path, notice: 'Successfully updated cluster category.'
       else
         variables_for_edit

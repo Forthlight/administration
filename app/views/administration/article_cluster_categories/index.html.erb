@@ -4,7 +4,7 @@
 <table>
   <% @clusters.each do |cluster| %>
     <tr>
-      <td><%= cluster.title %></td>
+      <td><%= restore_whitespace(cluster.title) %></td>
       <td><%= link_to "Edit", administration.edit_article_cluster_category_path(cluster.id) %></td>
     </tr>
   <% end %>

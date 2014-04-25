@@ -4,7 +4,7 @@
 <table>
   <% @categories.each do |category| %>
     <tr>
-      <td><%= category.title %></td>
+      <td><%= restore_whitespace(category.title) %></td>
       <td><%= link_to "Edit", administration.edit_article_category_path(category.id) %></td>
     </tr>
   <% end %>
