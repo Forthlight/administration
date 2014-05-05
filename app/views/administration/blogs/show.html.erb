@@ -6,7 +6,7 @@
         <i>Posted <%= @blog.created_at.strftime("%d %b. %Y") %></i>
       </div>
     </div>
-    <div class="blog-showcase">
+    <div class="blog-showcase structurise">
       <%= simple_format @blog.content %>
       
       <% if admin_signed_in? || user_signed_in? %>

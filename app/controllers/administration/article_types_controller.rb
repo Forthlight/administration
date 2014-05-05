@@ -6,7 +6,7 @@ module Administration
     require "#{Article::Engine.root}/app/models/article/publication.rb"
 
     def index
-      @types = Article::Type.all
+      @types = Article::Type.all.reverse
     end
 
     def new

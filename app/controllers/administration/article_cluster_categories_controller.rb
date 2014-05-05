@@ -6,7 +6,7 @@ module Administration
     require "#{Article::Engine.root}/app/models/article/publication.rb"
 
     def index
-      @clusters = Article::ClusterCategory.all
+      @clusters = Article::ClusterCategory.all.reverse
     end
 
     def new

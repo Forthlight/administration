@@ -1,0 +1,17 @@
+<%= tinymce_assets %>
+
+<%= form_for(@page) do |f| %>
+<%= tinymce %>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.text_area :content, :class => "tinymce", size: '100x20' %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Publish page", :class=>"mock-btn" %>
+  </div>
+<% end %>

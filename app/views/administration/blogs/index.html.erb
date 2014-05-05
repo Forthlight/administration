@@ -23,7 +23,7 @@
     <div class="blog-post">
       <h1><%= link_to blog.title, blog %></h1>
       <i>Posted <%= blog.created_at.strftime("%d %b. %Y") %></i>
-      <p><%= truncate_to_paragraph(blog.content) %></p>
+      <div class="structurise"><%= truncate_to_paragraph(blog.content) %></div>
       <div class="blog-foot">
         <%= link_to "Read more", blog, :class=>"mock-btn"%>
 

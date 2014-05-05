@@ -1,11 +1,20 @@
-<h1>ArticleCategories#index</h1>
-<p>Find me in app/views/administration/article_categories/index.html.erb</p>
-<%= link_to "Sign out", auth.destroy_admin_session_path, method: :delete %>
-<table>
-  <% @categories.each do |category| %>
-    <tr>
-      <td><%= category.title %></td>
-      <td><%= link_to "Edit", administration.edit_article_category_path(category.id) %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="row-fluid">
+	<%= render :file => "#{Administration::Engine.root}/app/views/shared/_adminaside.html.erb" %>
+
+	<div class="span9 ">
+		<!-- <div class="admin-head"><h3>Categories</h3></div> -->
+		<%= link_to "New category", administration.new_article_category_path,:class=>"mock-btn" %>
+		<div class="row-fluid admin-info"> 
+			<% @categories.each do |category| %>
+			<div class="latest">
+
+				<h3><%= category.title %></h3>
+				<%= category.description %>
+				<div>
+				<%= link_to "Edit", administration.edit_article_category_path(category.id),:class=>"mock-btn" %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

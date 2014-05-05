@@ -1,5 +1,5 @@
 Administration::Engine.routes.draw do  
-  resources :article_types, :article_categories, :article_cluster_categories, :members, :publications, :admins
+  resources :article_types, :article_categories, :article_cluster_categories, :members, :publications, :admins, :pages
 
   resources :blogs do
     resources :blog_comments
