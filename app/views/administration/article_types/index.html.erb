@@ -8,7 +8,7 @@
 			<% @types.each do |type| %>
 			<div class="latest">
 
-				<h3><%= type.title %></h3>
+				<h3><%= restore_whitespace(type.title) %></h3>
 				<%= type.description %>
 				<div>
 				<%=link_to "Edit", administration.edit_article_type_path(type.id),:class=>"mock-btn" %>

@@ -8,7 +8,7 @@
 			<% @clusters.each do |cluster| %>
 			<div class="latest">
 
-				<h3><%= cluster.title %></h3>
+				<h3><%= restore_whitespace(cluster.title) %></h3>
 				<%= cluster.description %>
 				<div>
 				<%=link_to "Edit", administration.edit_article_cluster_category_path(cluster.id),:class=>"mock-btn" %>
@@ -18,3 +18,4 @@
 		</div>
 	</div>
 </div>
+

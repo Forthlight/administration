@@ -36,17 +36,17 @@
   <div class="row-fluid overhead">
     <div class="span3 drop-compose">
       <%= f.label :type%>
-      <%= f.select(:type_id, Article::Type.all.collect{|t| [t.title, t.id]}, {:prompt => 'Choose Type'}) %>
+      <%= f.select(:type_id, Article::Type.all.collect{|t| [restore_whitespace(t.title), t.id]}, {:prompt => 'Choose Type'}) %>
     </div>
 
     <div class="span4 drop-compose">
       <%= f.label :cluster_category_id, "Cluster category" %>
-      <%= f.select(:cluster_category_id, Article::ClusterCategory.all.collect{|cc| [cc.title, cc.id]}, {:prompt => 'Choose cluster category'}) %>
+      <%= f.select(:cluster_category_id, Article::ClusterCategory.all.collect{|cc| [restore_whitespace(cc.title), cc.id]}, {:prompt => 'Choose cluster category'}) %>
     </div>
 
     <div class="span3 drop-compose">
       <%= f.label :category%>
-      <%= f.select(:category_id, Article::Category.all.collect{|c| [c.title, c.id]}, {:prompt => 'Choose Category'}) %>
+      <%= f.select(:category_id, Article::Category.all.collect{|c| [restore_whitespace(c.title), c.id]}, {:prompt => 'Choose Category'}) %>
     </div>
     <div class="span2">
       <%= f.submit "Save", :class=>"mock-btn" %>

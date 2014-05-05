@@ -11,8 +11,13 @@
   <% end %>
 
   <div>
+<<<<<<< HEAD
     <%= f.label :title, "Title" %><br>
     <%= f.text_field :title %>
+=======
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title, value: restore_whitespace(@cluster.title) %>
+>>>>>>> dc346eb1caa5a13ae83522a2cedd80c592d53c70
   </div>
 
   <div>
