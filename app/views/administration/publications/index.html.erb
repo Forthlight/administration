@@ -16,7 +16,7 @@
         <tbody>
          <% @publications.each do |article| %>
          <tr>
-          <td data-title="Title"><%= link_to article.title, administration.publication_path(article.id) %>
+          <td data-title="Title"><%= article.title %>
           </td>
           <td data-title="Published">
             <%= article.created_at.strftime("%d %b. %Y") %>

@@ -5,10 +5,17 @@ module Administration
 
    	embedded_in :blog, inverse_of: :blog_comments, class_name: "Administration::Blog"
 
+    before_save :sanitize_text
+    before_update :sanitize_text
+    
     field :author, type: Integer
     field :content, type: String
     field :admin, type: Boolean
 
-    validates :content, presence: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
+    validates :content, presence: true
+
+    def sanitize_text
+      self[:content] = CommonDomain::InputSanitizer.new.sanitize_this(self[:content])
+    end
   end
 end

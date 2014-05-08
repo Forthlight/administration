@@ -11,7 +11,7 @@
       </ul>
       <% else %>
       <p>
-        Here you will find the latest solar power advancements, site news and other interesting tidbits. 
+        In this blog people involved with forthlight management writes about things concerning Forthlight. 
       </p>
       <% end %>
 
@@ -22,7 +22,7 @@
     <% @blogs.each do |blog| %>
     <div class="blog-post">
       <h1><%= link_to blog.title, blog %></h1>
-      <i>Posted <%= blog.created_at.strftime("%d %b. %Y") %></i>
+      <i>Published on <%= blog.created_at.strftime("%d %b. %Y") %></i>
       <div class="structurise"><%= truncate_to_paragraph(blog.content) %></div>
       <div class="blog-foot">
         <%= link_to "Read more", blog, :class=>"mock-btn"%>

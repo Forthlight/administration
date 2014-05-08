@@ -1,6 +1,14 @@
 <li class="hidden-phone"><b>Quick Actions</b></li>
 <li><%= link_to "New page", administration.new_page_path %></li>
 <li><%= link_to "New blog post", administration.new_blog_path %></li>
+
+<li class="hidden-phone"><br><b>Management</b></li>
+<li><%= link_to "Articles", administration.publications_path %></li>
+<li><%= link_to "Members", administration.members_path %></li>
+<li><%= link_to "Admins", administration.admins_path %></li>
+<li><%= link_to "Pages", administration.pages_path %></li>
+<li><%= link_to "Blogs", administration.blogs_path %></li>
+
 <li class="hidden-phone"><br><b>Article groups</b></li>
 <li><%= link_to "Types", administration.article_types_path %></li>
 <li><%= link_to "Clusters", administration.article_cluster_categories_path %></li>
