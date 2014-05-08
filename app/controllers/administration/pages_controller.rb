@@ -2,7 +2,6 @@ require_dependency "administration/application_controller"
 
 module Administration
   class PagesController < ApplicationController
-    skip_before_filter :authenticate_admin!, only: [:show]
 
     def index
       @pages =  Administration::Page.all.order("created_at ASC").page(params[:page]).per(5)
@@ -51,7 +50,7 @@ module Administration
 
     private
     def page_params
-      allow = [:title, :content]
+      allow = [:title, :content, :main]
       params.require(:page).permit(allow)
     end
 

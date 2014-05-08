@@ -2,19 +2,18 @@
 	<%= render :file => "#{Administration::Engine.root}/app/views/shared/_adminaside.html.erb" %>
 
 	<div class="span9 ">
-		<!-- <div class="admin-head"><h3>Types</h3></div> -->
-		<%= link_to "New type", administration.new_article_type_path,:class=>"mock-btn" %>
-		<div class="row-fluid admin-info"> 
-			<% @types.each do |type| %>
-			<div class="latest">
-
-				<h3><%= restore_whitespace(type.title) %></h3>
-				<%= type.description %>
-				<div>
-				<%=link_to "Edit", administration.edit_article_type_path(type.id),:class=>"mock-btn" %>
-				</div>
+		<div class="admin-head"><h3>Types</h3></div>
+		<div class="overview">
+			<%= link_to "New type", administration.new_article_type_path,:class=>"mock-btn" %>
+			<div class="row-fluid"> 
+				<% @types.each do |type| %>
+					<div class="index-list-style">
+						<h3><%= restore_whitespace(type.title) %></h3>
+						<span><%= type.description %></span>
+						<span><%=link_to "Edit", administration.edit_article_type_path(type.id),:class=>"mock-btn" %></span>
+					</div>
+				<% end %>
 			</div>
-			<% end %>
 		</div>
 	</div>
 </div>

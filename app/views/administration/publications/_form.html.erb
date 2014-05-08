@@ -1,56 +1,53 @@
 <%= tinymce_assets %>
 <div class="composer">
   <%= form_for(@publication) do |f| %>
-  <%= tinymce %>
+    <%= tinymce %>
 
-
-  <% if @publication.errors.any? %>
-  <div class="error_messages">
-    <h3>Submission failed</h3>
-    <ul>
-      <% for message in @publication.errors.full_messages %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-  <br>
-  <% end %>
-
-
-  <div class="row-fluid overhead">
-    <div class="span10">
-      <%= f.text_field :title, :required => true, :placeholder=>"Title" %>
-    </div>
-
-    <div class="span2 check-style">
-      
-      <%= f.check_box :published %>
-      <%= f.label :published%>
-    </div>
-  </div>
-
-  <div>
-    <%= f.text_area :content, :class => "tinymce", size: '100x20' %>
-  </div>
-
-  <div class="row-fluid overhead">
-    <div class="span3 drop-compose">
-      <%= f.label :type%>
-      <%= f.select(:type_id, Article::Type.all.collect{|t| [restore_whitespace(t.title), t.id]}, {:prompt => 'Choose Type'}) %>
-    </div>
-
-    <div class="span4 drop-compose">
-      <%= f.label :cluster_category_id, "Cluster category" %>
-      <%= f.select(:cluster_category_id, Article::ClusterCategory.all.collect{|cc| [restore_whitespace(cc.title), cc.id]}, {:prompt => 'Choose cluster category'}) %>
-    </div>
-
-    <div class="span3 drop-compose">
-      <%= f.label :category%>
-      <%= f.select(:category_id, Article::Category.all.collect{|c| [restore_whitespace(c.title), c.id]}, {:prompt => 'Choose Category'}) %>
-    </div>
-    <div class="span2">
-      <%= f.submit "Save", :class=>"mock-btn" %>
-    </div>
-  </div>
-</div>
+    <% if @publication.errors.any? %>
+      <div class="error_messages">
+        <h3>Submission failed</h3>
+        <ul>
+          <% for message in @publication.errors.full_messages %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <br>
     <% end %>
+
+    <div class="row-fluid overhead">
+      <div class="span10">
+        <%= f.text_field :title, :required => true, :placeholder=>"Title" %>
+      </div>
+
+      <div class="span2 check-style">
+        <%= f.check_box :published %>
+        <%= f.label :published%>
+      </div>
+    </div>
+
+    <div>
+      <%= f.text_area :content, :class => "tinymce", size: '100x20' %>
+    </div>
+
+    <div class="row-fluid overhead">
+      <div class="span3 drop-compose">
+        <%= f.label :type%>
+        <%= f.select(:type_id, Article::Type.all.collect{|t| [restore_whitespace(t.title), t.id]}, {:prompt => 'Choose Type'}) %>
+      </div>
+
+      <div class="span4 drop-compose">
+        <%= f.label :cluster_category_id, "Cluster category" %>
+        <%= f.select(:cluster_category_id, Article::ClusterCategory.all.collect{|cc| [restore_whitespace(cc.title), cc.id]}, {:prompt => 'Choose cluster category'}) %>
+      </div>
+
+      <div class="span3 drop-compose">
+        <%= f.label :category%>
+        <%= f.select(:category_id, Article::Category.all.collect{|c| [restore_whitespace(c.title), c.id]}, {:prompt => 'Choose Category'}) %>
+      </div>
+      <div class="span2">
+        <%= f.submit "Save", :class=>"mock-btn" %>
+      </div>
+    </div>
+</div>
+<% end %>

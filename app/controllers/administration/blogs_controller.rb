@@ -2,8 +2,7 @@ require_dependency "administration/application_controller"
 
 module Administration
   class BlogsController < ApplicationController
-    skip_before_filter :authenticate_admin!, only: [:index, :show]
-
+    
     def index
       @blogs =  Administration::Blog.all.order("created_at ASC").page(params[:page]).per(5)
     end

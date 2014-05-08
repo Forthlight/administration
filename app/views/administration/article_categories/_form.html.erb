@@ -1,4 +1,4 @@
-<%= form_for(@category, url: @path, html: { method: @method }) do |f| %>
+<%= form_for(@category, url: @path, html: { method: @method, class:"basic-form"}) do |f| %>
   <% if @category.errors.any? %>
     <div class="error_messages">
       <h3>Submission failed</h3>
@@ -11,22 +11,17 @@
   <% end %>
 
   <div>
-<<<<<<< HEAD
-    <%= f.label :title, "Title" %><br>
-    <%= f.text_field :title %>
-=======
     <%= f.label :title, "Title" %>
-    <%= f.text_field :title, value: restore_whitespace(@cluster.title) %>
->>>>>>> dc346eb1caa5a13ae83522a2cedd80c592d53c70
+    <%= f.text_field :title, value: restore_whitespace(@category.title), placeholder: "Maximum length is 20 characters" %>
   </div>
 
   <div>
-    <%= f.label :description, "Description" %><br>
-    <%= f.text_area :description, :rows => 10, :class=>"span11"  %>
+    <%= f.label :description, "Description" %>
+    <%= f.text_area :description, :rows => 5, placeholder: "Maximum length is 255 characters" %>
   </div>
 
   <div>
-    <%= f.submit "Submit", :class=>"mock-btn" %>
+    <%= f.submit "Save", :class=>"mock-btn" %>
   </div>
   
 <% end %>

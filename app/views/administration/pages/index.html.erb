@@ -4,7 +4,6 @@
       <h1><%= controller.controller_name.capitalize %></h1>
     </div>
     <div class="admin-info hidden-phone">
-      Here you can create and manage secondary pages. 
       <ul>
         <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
       </ul>
@@ -12,6 +11,7 @@
   </div>
 
   <div class="span9 blog-content">
+    <%= link_to "New page", administration.new_page_path,:class=>"mock-btn" %>
     <% @pages.each do |page| %>
     <div class="blog-post">
       <h1><%= link_to page.title, page %></h1>
@@ -21,8 +21,8 @@
         <%= link_to "View page", administration.page_path(page.id), :class=>"mock-btn"%>
 
         <% if admin_signed_in? %>
-        <%= link_to 'Edit', edit_page_path(page), :class=>"mock-btn" %>
-        <%= link_to 'Delete', page, confirm: 'Are you sure?', method: :delete, :class=>"mock-btn del" %>
+          <%= link_to 'Edit', edit_page_path(page), :class=>"mock-btn" %>
+          <%= link_to 'Delete', page, confirm: 'Are you sure?', method: :delete, :class=>"mock-btn del" %>
         <% end %>
       </div>
     </div>

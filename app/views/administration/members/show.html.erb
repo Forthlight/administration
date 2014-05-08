@@ -20,24 +20,28 @@
             <td data-title="Username"><%= @member.username %></td>
             <td data-title="Role">
               <% if @member.role == :research %> 
-              <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
-
+                <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
               <% elsif @member.role == :business %>
-              <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
-
+                <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
               <% else %>
-              <%= image_tag("user.png", size: "32x32", alt: "User") %>
-
+                <%= image_tag("user.png", size: "32x32", alt: "User") %>
               <% end %>
             </td>
             <td>
-              <%= button_to "Delete", administration.member_path(@member.id), data: { confirm: "Permanently remove this member?" }, method: :destroy, :class=>"mock-btn del" %>
+              <%= link_to "Delete", administration.member_path(@member.id), confirm: "Permanently remove this member?", method: :delete, :class=>"mock-btn del" %>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="admin-info"><h3>Description</h3><%= simple_format @member.description %></div>
+    <div class="admin-info">
+      <h3>Description</h3>
+      <% unless @member.description.blank? %>
+        <p><%=simple_format @member.description %></p>
+      <% else %>
+        <p>This user has not entered a description</p>
+      <% end %>
+    </div>
   </div>
 </div>
 

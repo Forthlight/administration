@@ -1,32 +1,29 @@
 <div class="row-fluid">
   <div class="span9">
-    <div class="side-head">
+    <div class="admin-head">
       <h1><%= @page.title %></h1>
-      <div class="visible-phone">
-
+    </div>
+      <div class="admin-info structurise">
+        <%=raw @page.content %>
       </div>
     </div>
-    <div class="side-info structurise">
-      <%= simple_format @page.content %>
-        </div>
-    </div>
 
-<div class="span3">
-  <div class="side-head hidden-phone">
-    <h3>Published</h3>
-  </div>
-  <div class="side-info hidden-phone">
-    <ul>
-      <% if admin_signed_in? %>
-        <li><%= link_to 'Edit This page', edit_page_path(@page) %></li>
-        <li><%= link_to 'Delete This post', @page, confirm: 'Are you sure?', :method => :delete %><br></li>
+  <div class="span3">
+    <div class="admin-head hidden-phone">
+      <h1>Administration</h1>
+    </div>
+    <div class="admin-info hidden-phone">
+      <ul>
+        <li><%= link_to 'Edit this page', edit_page_path(@page) %></li>
+        <li><%= link_to 'Delete this page', @page, confirm: 'Are you sure?', :method => :delete %><br></li>
+      </ul>
+    </div>
+    <div class="admin-info hidden-phone">
+      <ul>
         <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
-      <% else %>
-        something useful
-      <% end %>
-    </ul>
+      </ul>
+    </div>
   </div>
-</div>
 </div>
 
 

@@ -1,14 +1,70 @@
-<h1>Administration::Publication#show</h1>
-<p>Find me in app/views/article/publication/show.html.erb</p>
+<div class="row-fluid">
+  <div class="span9">
+    <div class="admin-head">
+      <h1> <%= @publication.title %></h1>
+    </div>
+    <div class="catalog">
 
-<pre>
-  <%= @publication.to_yaml %>
-</pre>
+      <div class="structurise">
+        <%=raw @publication.content %>
+      </div>
 
-<pre>
-  <%= @publication.type.title.to_yaml %>
-</pre>
+      <% if admin_signed_in? || user_signed_in? %>
+        <div class="admin-head">
+          <h3>New comment</h3>
+        </div>
+        <%= form_for([@publication, Article::Comment.new], url: article.publication_comments_path(@publication.id)) do |f| %>
+          <p><%= f.text_area :content, :rows => 10, :class=>"span12" %></p>
+          <p><%= f.submit "Send", :class=>"mock-btn" %></p>
+        <% end %>
+      <% end %>
 
-<pre>
-  <%= @publication.category.title.to_yaml %>
-</pre>
+      <div class="article-comments">
+        <div class="admin-head">
+          <h3>Comments</h3>
+        </div>
+        <% if @publication.comments.size > 0 %>
+          <% @publication.comments.each do |comment| %>
+            <div class="comment-post">
+              <% if comment.admin %>
+                <h3 style="color:#FC6E51;">Administrator</h3>
+              <% else %>
+                <b><%= find_author_name(comment.author) %></b>
+              <% end %>
+
+              <i><%= comment.created_at.strftime("%I:%M %d %b, %Y") %></i>
+
+              <p><%= comment.content %></p>
+            </div>
+          <% end %>
+        <% else %>
+          <h3>No comments added for this article.</h3>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="span3">
+    <div class="admin-head hidden-phone">
+      <% if find_author_name(@publication.author) %>
+        <h3>Authored by <%= link_to find_author_name(@publication.author), member.profile_path(@publication.author) %></h3>
+      <% else %>
+        <h3>Author has closed the account</h3>
+      <% end %>
+      
+      <i>Published <%= @publication.created_at.strftime("%d %b. %Y") %></i>
+      <p>
+        <i><%= restore_whitespace(@publication.category.title) %></i> - 
+        <i><%= restore_whitespace(@publication.type.title) %></i> - 
+        <i><%= restore_whitespace(@publication.cluster_category.title) %></i>
+      </p>
+    </div>
+    <div class="admin-info hidden-phone">
+      <ul>
+        <li>This article has been useful to <span id="current-rating" class="no-float"><%= @publication.rating ? @publication.rating : 0 %></span> people</li>
+        <li><%= link_to "Was this article useful to you? Click here!", "#", id: "rate", :ajax_path => article.rate_path(@publication.id) %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+

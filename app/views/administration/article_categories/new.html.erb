@@ -1,24 +1,12 @@
 <div class="row-fluid">
   <div class="span9">
     <div class="admin-head">
-     <h1>New category</h1>
-   </div>
-   <div class="blog-showcase">
-     <%= render 'form' %>
-   </div>
- </div>
- <div class="span3">
-  <div class="admin-head hidden-phone">
-    <h3>Helper</h3>
+      <h1>New category</h1>
+    </div>
+    <div class="blog-showcase">
+      <%= render 'form' %>
+    </div>
   </div>
-  <div class="admin-info hidden-phone">
-    <ul>
-      <% if admin_signed_in? %>
-      <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
-      <% else %>
-      something useful
-      <% end %>
-    </ul>
-  </div>
-</div>
+
+  <%= render :file => "#{Administration::Engine.root}/app/views/shared/_adminaside.html.erb" %>
 </div>
