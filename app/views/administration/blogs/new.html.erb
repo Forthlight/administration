@@ -8,17 +8,13 @@
    </div>
  </div>
  <div class="span3">
-  <div class="admin-head">
-    <h3>Helper</h3>
+    <div class="admin-head hidden-phone">
+      <h1>Administration</h1>
+    </div>
+    <div class="admin-info hidden-phone">
+      <ul>
+        <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
+      </ul>
+    </div>
   </div>
-  <div class="admin-info hidden-phone">
-    <ul>
-      <% if admin_signed_in? %>
-      <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
-      <% else %>
-      something useful
-      <% end %>
-    </ul>
-  </div>
-</div>
 </div>

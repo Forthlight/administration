@@ -26,7 +26,7 @@
             <h3>Comments</h3>
           </div>
 
-          <% @blog.blog_comments.reverse.each do |comment| %>
+          <% @blog.blog_comments.each do |comment| %>
             <div class="comment-post">
               <% if comment.admin %>
                 <h3 style="color:#FC6E51;">Administrator</h3>
@@ -45,24 +45,22 @@
     </div>
   </div>
 
-<div class="span3">
-  <div class="admin-head hidden-phone">
-    <h3>Published</h3>
-    <i> <%= @blog.created_at.strftime("%d %b. %Y") %></i>
-  </div>
-  <div class="admin-info hidden-phone">
-    <ul>
-      <% if admin_signed_in? %>
-        <li><%= link_to 'Edit This post', edit_blog_path(@blog) %></li>
-        <li><%= link_to 'Delete This post', @blog, confirm: 'Are you sure?', :method => :delete %></li>
-
+  <div class="span3">
+    <div class="admin-head hidden-phone">
+      <h1>Administration</h1>
+    </div>
+    <div class="admin-info hidden-phone">
+      <ul>
+        <li><%= link_to 'Edit this blog', administration.edit_blog_path(@blog) %></li>
+        <li><%= link_to 'Delete this blog', @blog, confirm: 'Are you sure?', :method => :delete %><br></li>
+      </ul>
+    </div>
+    <div class="admin-info hidden-phone">
+      <ul>
         <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
-      <% else %>
-        something useful
-      <% end %>
-    </ul>
+      </ul>
+    </div>
   </div>
-</div>
 </div>
 
 

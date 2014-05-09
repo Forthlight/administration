@@ -13,13 +13,8 @@
   </div>
   <div class="admin-info hidden-phone">
     <ul>
-      <% if admin_signed_in? %>
-      <li><%= link_to 'Delete This page', @page, :method => :delete %></li>
-
+      <li><%= link_to 'Delete this page', @page, :method => :delete %></li>
       <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
-      <% else %>
-      something useful
-      <% end %>
     </ul>
   </div>
 </div>

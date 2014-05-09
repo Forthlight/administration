@@ -51,7 +51,7 @@ module Administration
 
     private
     def blog_params
-      allow = [:title, :content, :author]
+      allow = [:title, :content, :author, :published]
       params.require(:blog).permit(allow)
     end
   end

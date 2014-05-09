@@ -1,41 +1,28 @@
 <div class="row-fluid">
-    <div class="span3">
-      <div class="admin-head">
-        <h1><%= controller.controller_name.capitalize %></h1>
-      </div>
-      <div class="admin-info hidden-phone">
+  <%= render :file => "#{Administration::Engine.root}/app/views/shared/_adminaside.html.erb" %>
 
-       <% if admin_signed_in? %>
-       <ul>
-        <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
-      </ul>
-      <% else %>
-      <p>
-        In this blog people involved with forthlight management writes about things concerning Forthlight. 
-      </p>
-      <% end %>
-
-    </div>
-    </div>
-
-  <div class="span9 blog-content">
-    <% @blogs.each do |blog| %>
-    <div class="blog-post">
-      <h1><%= link_to blog.title, blog %></h1>
-      <i>Published on <%= blog.created_at.strftime("%d %b. %Y") %></i>
-      <div class="structurise"><%= truncate_to_paragraph(blog.content) %></div>
-      <div class="blog-foot">
-        <%= link_to "Read more", blog, :class=>"mock-btn"%>
-
-        <% if admin_signed_in? %>
-          <%= link_to 'Edit', edit_blog_path(blog), :class=>"mock-btn" %>
-          <%= link_to 'Delete', blog, confirm: 'Are you sure?', method: :delete, :class=>"mock-btn del" %>
+  <div class="span9">
+    <div class="admin-head"><h3>Blogs</h3></div>
+    <div class="overview">
+      <%= link_to "New blog", administration.new_blog_path,:class=>"mock-btn" %>
+      <div class="row-fluid">
+        <% @blogs.each do |blog| %>
+          <div class="index-list-style">
+            <h3><%= link_to blog.title, blog %></h3>
+            <span>Published on <%= blog.created_at.strftime("%d %b. %Y") %></span>
+            <div class="structurise">
+              <%= truncate_to_paragraph(blog.content) %>
+            </div>
+            <div class="blog-foot">
+              <%= link_to "Read more", blog, :class=>"mock-btn"%>
+              <%= link_to 'Edit', edit_blog_path(blog), :class=>"mock-btn" %>
+              <%= link_to 'Delete', blog, confirm: 'Are you sure?', method: :delete, :class=>"mock-btn del" %>
+            </div>
+          </div>
         <% end %>
       </div>
+      <%= paginate @blogs, :remote => false %>
     </div>
-    <% end %>
-
-    <%= paginate @blogs, :remote => false %>
   </div>    
 </div>
 

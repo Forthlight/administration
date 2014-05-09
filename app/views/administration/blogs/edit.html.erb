@@ -8,19 +8,18 @@
    </div>
  </div>
  <div class="span3">
-  <div class="admin-head">
-    <h3>Post by <%= @blog.author %></h3>
+    <div class="admin-head hidden-phone">
+      <h1>Administration</h1>
+    </div>
+    <div class="admin-info hidden-phone">
+      <ul>
+        <li><%= link_to 'Delete this blog', @blog, confirm: 'Are you sure?', :method => :delete %><br></li>
+      </ul>
+    </div>
+    <div class="admin-info hidden-phone">
+      <ul>
+        <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
+      </ul>
+    </div>
   </div>
-  <div class="admin-info hidden-phone">
-    <ul>
-      <% if admin_signed_in? %>
-      <li><%= link_to 'Delete This post', @blog, :method => :delete %></li>
-
-      <%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
-      <% else %>
-      something useful
-      <% end %>
-    </ul>
-  </div>
-</div>
 </div>

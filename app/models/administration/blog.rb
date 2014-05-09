@@ -11,9 +11,10 @@ module Administration
     field :title, type: String
     field :content, type: String
     field :author, type: Integer
+    field :published, type: Boolean, default: false
 
     validates_presence_of :title, :content
-    validates :title, length: {maximum: 255}, format: { with: /\A[a-zA-Z0-9]+\Z/ }
+    validates :title, length: {maximum: 255}
 
     def sanitize_text
       self[:content] = CommonDomain::InputSanitizer.new.sanitize_this(self[:content])

@@ -1,11 +1,11 @@
 <div class="row-fluid">
 	<%= render :file => "#{Administration::Engine.root}/app/views/shared/_adminaside.html.erb" %>
 
-	<div class="span9 ">
+	<div class="span9">
 		<div class="admin-head"><h3>Types</h3></div>
 		<div class="overview">
 			<%= link_to "New type", administration.new_article_type_path,:class=>"mock-btn" %>
-			<div class="row-fluid"> 
+			<div class="row-fluid">
 				<% @types.each do |type| %>
 					<div class="index-list-style">
 						<h3><%= restore_whitespace(type.title) %></h3>
