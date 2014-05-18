@@ -1,3 +1,12 @@
-<h1>Admins#edit</h1>
-<p>Find me in app/views/administration/admins/edit.html.erb</p>
-<%= render 'form' %>
+<div class="row-fluid">
+  <div class="span9">
+    <div class="admin-head ">
+      <h1>Edit administrator</h1>
+    </div>
+    <div class="blog-showcase">
+      <%= render 'form' %>
+    </div>
+  </div>
+  
+  <%= render :file => "#{Administration::Engine.root}/app/views/shared/_adminaside.html.erb" %>
+</div>

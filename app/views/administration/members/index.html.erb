@@ -1,43 +1,46 @@
 <div class="row-fluid">
-<%= render :file => "#{Administration::Engine.root}/app/views/shared/_adminaside.html.erb" %>
+  <%= render :file => "#{Administration::Engine.root}/app/views/shared/_adminaside.html.erb" %>
 
-<div class="span9">
-  <div class="row-fluid"> 
-      <table class="responsive-table">
-        <thead class="table-head">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Username</th>    
-            <th scope="col">Role</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @members.each do |user| %>
-          <tr>
-            <td scope="row" data-title="Name"><%= link_to user.first_name + " " + user.last_name, administration.member_path(user.id) %></td>      
-            <td data-title="Email"><%= user.email %></td>
-            <td data-title="Username"><%= user.username %></td>
-            <td data-title="Role">
-              <% if user.role == :research %> 
-         <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
-
-        <% elsif user.role == :business %>
-         <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
-         
-        <% else %>
-         <%= image_tag("user.png", size: "32x32", alt: "User") %>
-
-        <% end %>
-            </td>
-            <td>
-              <%= link_to "Delete", administration.member_path(user.id), confirm: "Permanently remove this member?", method: :delete, :class=>"mock-btn del" %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+  <div class="span9">
+    <div class="row-fluid"> 
+      <div class="admin-head">
+        <h3>Members</h3>
+      </div>
+      <div class="overview">
+        <table class="responsive-table">
+          <thead class="table-head">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Username</th>    
+              <th scope="col">Role</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @members.each do |user| %>
+              <tr>
+                <td scope="row" data-title="Name"><%= link_to user.first_name + " " + user.last_name, administration.member_path(user.id) %></td>      
+                <td data-title="Email"><%= user.email %></td>
+                <td data-title="Username"><%= user.username %></td>
+                <td data-title="Role">
+                  <% if user.role == :research %> 
+                    <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
+                  <% elsif user.role == :business %>
+                    <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
+                  <% else %>
+                    <%= image_tag("user.png", size: "32x32", alt: "User") %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to "Delete", administration.member_path(user.id), confirm: "Permanently remove this member?", method: :delete, :class=>"mock-btn del" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @members, :remote => false %>
+      </div>
+    </div>
   </div>
-</div>
 </div>

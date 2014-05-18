@@ -3,7 +3,7 @@ require_dependency "administration/application_controller"
 module Administration
   class AdminsController < ApplicationController
     def index
-      @admins = Administration::Admin.all
+      @admins = Administration::Admin.all.order("created_at DESC").page(params[:page]).per(10)
     end
 
     def show

@@ -13,7 +13,7 @@
 
 .admin-info {
   background: white;
-  padding:15px;
+  padding: 5px 15px;
 }
 
 .admin-info ul {
@@ -28,6 +28,10 @@
 
 .admin-info span {
   float: right;
+}
+
+.admin-info nav.pagination span {
+  float: none;
 }
 
 .panel-head {

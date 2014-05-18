@@ -3,11 +3,12 @@ require_dependency "administration/application_controller"
 module Administration
   class MembersController < ApplicationController
     def index
-      @members = Member::User.all
+      @members = Member::User.all.order("created_at DESC").page(params[:page]).per(10)
     end
 
     def show
       @member = Member::User.find(params[:id])
+      @publications = Article::Publication.where(author: params[:id]).order("created_at DESC").page(params[:page]).per(10)
     end
 
     def new

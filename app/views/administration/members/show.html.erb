@@ -42,6 +42,40 @@
         <p>This user has not entered a description</p>
       <% end %>
     </div>
+
+    <div class="admin-info">
+      <h3>Articles</h3>
+      <table class="responsive-table">
+        <thead class="table-head">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Published</th>
+            <th scope="col">Rating</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @publications.each do |article| %>
+            <tr>
+              <td data-title="Title">
+                <%= article.title %>
+              </td>
+              <td data-title="Published">
+                <%= article.created_at.strftime("%d %b. %Y") %>
+              </td>
+              <td data-title="Rating">
+                <%= article.rating ? article.rating : 0 %>
+              </td>
+              <td>
+                <%= link_to "Edit", administration.edit_publication_path(article.id), :class=>"mock-btn" %>
+                <%= link_to "Delete", administration.publication_path(article.id), data: { confirm: "Are you sure?" }, method: :delete, :class=>"mock-btn del" %>
+              </td>
+             </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @publications, :remote => false %>
+    </div>
   </div>
 </div>
 
