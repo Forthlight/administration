@@ -22,7 +22,7 @@
             <%= article.created_at.strftime("%d %b. %Y") %>
           </td>
           <td data-title="Rating">
-            <%#= article.rating %>
+            <%= article.rating ? article.rating : 0 %>
           </td>
           <td>
            <%= link_to "Edit", administration.edit_publication_path(article.id), :class=>"mock-btn" %></td>
